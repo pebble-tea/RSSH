@@ -101,6 +101,8 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[1;34m'
 
+SSH=./gibbley
+
 # region Script constants
 
 VERBOSE=""
@@ -140,7 +142,8 @@ run()
 			# Build commandfrom string
 			# TODO : better command building to allow variable calls in INI file
 			# TODO : Improve Security
-			CMD="sshpass -p '$password' ssh -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no $username@$inet '$command'"
+			SSHFLAGS="-p '$password'"
+			CMD="$SSH $SSHFLAGS ssh -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no $username@$inet '$command'"
 			eval $CMD # Evaluate built command
 			# check command return value
 			if [[ $? -eq 0 ]]; then
