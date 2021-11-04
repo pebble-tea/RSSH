@@ -140,7 +140,7 @@ run()
 			# Build commandfrom string
 			# TODO : better command building to allow variable calls in INI file
 			# TODO : Improve Security
-			CMD="sshpass -p '$password' ssh -o \"UserKnownHostsFile=/dev/null\" -o \"StrictHostKeyChecking=no\" $username@$inet '$command'"
+			CMD="sshpass -p '$password' ssh -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no $username@$inet '$command'"
 			eval $CMD # Evaluate built command
 			# check command return value
 			if [[ $? -eq 0 ]]; then
